@@ -8,6 +8,20 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
+        try {
+            Acount ac = new Acount();
+            ac.abono(100);
+            ac.cargo(50);
+            ac.cargo(-10);
+            ac.abono(-15);    
+        } catch (IllegalArgumentException e) {
+            System.out.println( e.getMessage() );
+        }
+        catch (Exception e) {
+            System.out.println( e.getMessage() );
+        }
+        
+        
     }
 }
