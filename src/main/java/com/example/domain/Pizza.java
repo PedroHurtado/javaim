@@ -14,7 +14,7 @@ public class Pizza extends BaseEntity {
     private final Set<Ingredient> ingredients;
 
     protected Pizza(
-            UUID id,
+            final UUID id,
             String name,
             String description,
             String url,
