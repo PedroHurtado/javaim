@@ -7,7 +7,7 @@ import java.util.UUID;
 import com.example.common.BaseEntity;
 
 public class Pizza extends BaseEntity {
-    private static final Double PROFIT = 1.2D;
+    private static final Double PROFIT = 1.20D;
     private String name;
     private String description;
     private String url;
@@ -47,10 +47,10 @@ public class Pizza extends BaseEntity {
     public double getPrice() {
         return ingredients.stream()
             .map(Ingredient::getCost)  
-            .reduce(0.0, Double::sum)  
-            * PROFIT;  // Aplica la ganancia
+            .reduce(0.0, Double::sum) * PROFIT;  
     }
     public static Pizza create(String name, String description, String url, Set<Ingredient> ingredients){
         return new Pizza(UUID.randomUUID(), name, description, url, ingredients);
     }
+    
 }

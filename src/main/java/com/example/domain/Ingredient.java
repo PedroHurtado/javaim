@@ -28,4 +28,5 @@ public class Ingredient extends BaseEntity{
         return new Ingredient(UUID.randomUUID(), name, cost);
     }
     
+    
 }

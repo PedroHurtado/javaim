@@ -7,19 +7,15 @@ public abstract class BaseEntity {
     protected BaseEntity(final UUID id) {
         this.id = id;
     }
-    UUID getId() {
+    public UUID getId() {
         return id;
     }
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        if (obj instanceof BaseEntity e) {
+            return id.equals(e.id);
         }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        BaseEntity that = (BaseEntity) obj;
-        return id.equals(that.id);
+        return false;        
     }
     @Override
     public int hashCode() {        
