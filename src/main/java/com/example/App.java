@@ -19,6 +19,7 @@ public class App
             return (b)->a+b;
         };*/
 
+        print("Hello", (value)->System.out.println(value));
         print("Hello", System.out::println);
         
         System.out.println(clousure(5).apply(3));
@@ -80,7 +81,7 @@ public class App
     static Function<Integer,Integer> clousure(int a){
         return (b)->a+b;
     }
-
+    //print("Hello", System.out::println);
     static void print(Object value, Consumer<Object> printer){
         printer.accept(value);
     }
