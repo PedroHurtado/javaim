@@ -50,9 +50,24 @@ public class Pizza extends BaseEntity {
         return url;
     }  
     public double getPrice() {
-        return ingredients.stream()
-                .mapToDouble(Ingredient::getCost)                
-                .sum() * PROFIT;
+
+        double Price =0.0;
+        for (Ingredient ingredient : ingredients) {
+            Price += ingredient.getCost();
+        }
+        return Price * PROFIT;
+
+        /*return ingredients.stream()
+                .map(Ingredient::getCost)   
+                .reduce(0.0, Double::sum) * PROFIT; */
+
+        /*return ingredients.stream()
+                .map(i->i.getCost())   
+                .reduce(0.0, (a,v)->a+v) * PROFIT; */
+
+        /*return ingredients.stream()
+                .mapToDouble(Ingredient::getCost)   //map             
+                .sum() * PROFIT; //reduce*/
     }
     public static Pizza create(
             String name,
