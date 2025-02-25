@@ -1,6 +1,6 @@
 package com.example.domain;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -41,8 +41,8 @@ public class Pizza extends BaseEntity {
     public String getDescription() {
         return description;
     }
-    public List<Ingredient> getIngredients() {
-        return ingredients.stream().toList();
+    public Set<Ingredient> getIngredients() {
+        return new HashSet<>(ingredients);
     }
     public String getName() {
         return name;
