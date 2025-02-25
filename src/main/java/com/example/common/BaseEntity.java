@@ -11,9 +11,9 @@ public abstract class BaseEntity {
         return id;
     }
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) {        
         if (obj instanceof BaseEntity e) {
-            return id.equals(e.id);
+            return id.equals(e.id);   //true or false
         }
         return false;        
     }

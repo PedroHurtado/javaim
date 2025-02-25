@@ -27,7 +27,7 @@ public class App {
         var pizza = Pizza.create(
                 "carbonara",
                 "buenisima",
-                "img", ingredientes);
+                "img", ingredientes);        
         System.out.println(pizza.getPrice());
 
         /*

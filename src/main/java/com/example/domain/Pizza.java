@@ -26,8 +26,7 @@ public class Pizza extends BaseEntity {
         this.ingredients = ingredients;
     }
     void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
-
+        ingredients.add(ingredient);       
     }
     void removeIngredient(Ingredient ingredient) {
         ingredients.remove(ingredient);
@@ -49,10 +48,10 @@ public class Pizza extends BaseEntity {
     }
     public String getUrl() {
         return url;
-    }
+    }  
     public double getPrice() {
         return ingredients.stream()
-                .mapToDouble(Ingredient::getCost)
+                .mapToDouble(Ingredient::getCost)                
                 .sum() * PROFIT;
     }
     public static Pizza create(
