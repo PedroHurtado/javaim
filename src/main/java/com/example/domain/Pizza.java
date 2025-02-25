@@ -12,45 +12,64 @@ public class Pizza extends BaseEntity {
     private String description;
     private String url;
     private final Set<Ingredient> ingredients;
-    protected Pizza(UUID id,String name, String description, String url, Set<Ingredient> ingredients) { 
+
+    protected Pizza(
+            UUID id,
+            String name,
+            String description,
+            String url,
+            Set<Ingredient> ingredients) {
         super(id);
-        this.name =name;
-        this.description = description; 
-        this.url = url;
-        this.ingredients = ingredients;       
-    }
-    void addIngredient(Ingredient ingredient){
-        ingredients.add(ingredient);
-        
-    }
-    void removeIngredient(Ingredient ingredient){
-        ingredients.remove(ingredient);
-    }
-    void Update(String name, String description, String url){
         this.name = name;
         this.description = description;
         this.url = url;
-        
+        this.ingredients = ingredients;
     }
+
+    void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+
+    }
+
+    void removeIngredient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
+    }
+
+    void Update(String name, String description, String url) {
+        this.name = name;
+        this.description = description;
+        this.url = url;
+
+    }
+
     public String getDescription() {
         return description;
     }
+
     public List<Ingredient> getIngredients() {
         return ingredients.stream().toList();
     }
+
     public String getName() {
         return name;
     }
+
     public String getUrl() {
         return url;
     }
+
     public double getPrice() {
         return ingredients.stream()
-            .map(Ingredient::getCost)  
-            .reduce(0.0, Double::sum) * PROFIT;  
+                .map(Ingredient::getCost)
+                .reduce(0.0, Double::sum) * PROFIT;
     }
-    public static Pizza create(String name, String description, String url, Set<Ingredient> ingredients){
+
+    public static Pizza create(
+            String name,
+            String description,
+            String url,
+            Set<Ingredient> ingredients) {
         return new Pizza(UUID.randomUUID(), name, description, url, ingredients);
     }
-    
+
 }
