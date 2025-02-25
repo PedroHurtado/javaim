@@ -2,13 +2,17 @@ package com.example;
 
 //import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.UUID;
 //import java.util.List;
 //import java.util.ArrayList;
 //import java.util.List;
 import java.util.function.*;
 
+import com.example.common.repository.Remove;
+import com.example.common.repository.Update;
 import com.example.domain.Ingredient;
-import com.example.domain.Pizza;;
+import com.example.domain.Pizza;
+import com.example.infraestructura.RepositoryPizza;;
 
 /**
  * Hello world!
@@ -29,6 +33,10 @@ public class App {
                 "buenisima",
                 "img", ingredientes);        
         System.out.println(pizza.getPrice());
+
+        Remove<Pizza,UUID> remove = new RepositoryPizza();
+        var p = remove.get(null);
+        remove.remove(p);
 
         /*
          * Function<Integer,Function<Integer,Integer>> clousure = (a)->{
