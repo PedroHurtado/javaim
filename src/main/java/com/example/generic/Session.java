@@ -11,7 +11,7 @@ public class Session {
         session.put(key, value);
     }
 
-    @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
     public static <T> Optional<T> getData(String key) {
         try {
             return Optional.of((T) session.get(key));

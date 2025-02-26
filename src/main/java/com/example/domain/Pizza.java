@@ -51,11 +51,11 @@ public class Pizza extends BaseEntity {
     }  
     public double getPrice() {
 
-        double Price =0.0;
+        /*double Price =0.0;
         for (Ingredient ingredient : ingredients) {
             Price += ingredient.getCost();
         }
-        return Price * PROFIT;
+        return Price * PROFIT;*/
 
         /*return ingredients.stream()
                 .map(Ingredient::getCost)   
@@ -65,9 +65,9 @@ public class Pizza extends BaseEntity {
                 .map(i->i.getCost())   
                 .reduce(0.0, (a,v)->a+v) * PROFIT; */
 
-        /*return ingredients.stream()
-                .mapToDouble(Ingredient::getCost)   //map             
-                .sum() * PROFIT; //reduce*/
+        return ingredients.stream()
+                .mapToDouble(Ingredient::getCost)   //map                             
+                .sum() * PROFIT;
     }
     public static Pizza create(
             String name,

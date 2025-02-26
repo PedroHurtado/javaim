@@ -23,14 +23,19 @@ import com.example.infraestructura.RepositoryPizza;;
  */
 public class App {
     public static void main(String[] args) {
-
-
-        
+       Integer z =10;
+       Class<?> cl = String.class;             
+       printType(String.class);
+       printType(Integer.class);
+       printType(z.getClass());
+       printType(cl);
+       
 
         //Inferencia de tipos
         List<String> list = new ArrayList<>();
         list.add("Hello");
         list.add("World");
+        list.stream().filter(null);
         Session.add("a", list);
         var result = Session.<List<String>>getData("a").orElseThrow();
         for(var item:result){
@@ -134,5 +139,8 @@ public class App {
     // print("Hello", System.out::println);
     static void print(Object value, Consumer<Object> printer) {
         printer.accept(value);
+    }
+    static <T> void printType(Class<T> cl){       
+        System.out.println(cl.getName());
     }
 }
