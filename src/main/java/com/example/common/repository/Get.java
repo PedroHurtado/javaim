@@ -9,7 +9,7 @@ public interface Get<T extends BaseEntity, ID> extends Data<T> {
                 .filter(e->e.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new CustomException());
-        );
+        
     }
     
 }
