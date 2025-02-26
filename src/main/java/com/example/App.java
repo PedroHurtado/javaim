@@ -1,7 +1,9 @@
 package com.example;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 //import java.util.List;
 //import java.util.ArrayList;
@@ -11,6 +13,8 @@ import java.util.function.*;
 import com.example.common.repository.Remove;
 import com.example.domain.Ingredient;
 import com.example.domain.Pizza;
+import com.example.generic.A;
+import com.example.generic.Session;
 import com.example.infraestructura.RepositoryPizza;;
 
 /**
@@ -19,6 +23,27 @@ import com.example.infraestructura.RepositoryPizza;;
  */
 public class App {
     public static void main(String[] args) {
+
+
+        
+
+        //Inferencia de tipos
+        List<String> list = new ArrayList<>();
+        list.add("Hello");
+        list.add("World");
+        Session.add("a", list);
+        var result = Session.<List<String>>getData("a").orElseThrow();
+        for(var item:result){
+            System.out.println(item);
+        }
+        
+        var a = new A<Integer>();
+        double b=30;
+        a.add(null);
+        a.add("");
+        a.add(1);
+        a.add(2.0);
+        a.<Double>add(b);
 
         var tomate = Ingredient.create("Tomate", 1.5);
         var queso = Ingredient.create("Queso", 1.2);
