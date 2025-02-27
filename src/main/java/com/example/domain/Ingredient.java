@@ -14,14 +14,14 @@ public class Ingredient extends BaseEntity{
         this.cost = cost;
         
     }
-    void Update(String name, Double cost){
+    public void Update(String name, Double cost){
         this.name = name;
         this.cost = cost;
     }
-    String getName() {
+    public String getName() {
         return name;
     }
-    Double getCost(){
+    public Double getCost(){
         return cost;
     }
     public static Ingredient create(String name, Double cost){

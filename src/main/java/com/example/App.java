@@ -5,19 +5,21 @@ import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.UUID;
+
 //import java.util.List;
 //import java.util.ArrayList;
 //import java.util.List;
 import java.util.function.*;
 
-import com.example.common.repository.Remove;
+
 import com.example.customexceptions.CustomException;
 import com.example.domain.Ingredient;
 import com.example.domain.Pizza;
+import com.example.features.ingredient.CreateIngredient;
+import com.example.features.ingredient.UpdateIngredient;
 import com.example.generic.A;
 import com.example.generic.Session;
-import com.example.infraestructura.RepositoryPizza;;
+import com.example.infraestructura.RepositoryIngredient;
 
 /**
  * Hello world!
@@ -25,6 +27,10 @@ import com.example.infraestructura.RepositoryPizza;;
  */
 public class App {
     public static void main(String[] args) {
+
+
+       Ejercicicios.join();
+
 
        CustomException instance = createInstance(CustomException.class); 
        
@@ -70,9 +76,16 @@ public class App {
                 "img", ingredientes);        
         System.out.println(pizza.getPrice());
 
-        Remove<Pizza,UUID> remove = new RepositoryPizza();
-        var p = remove.get(null);
-        remove.remove(p);
+        var repository = new RepositoryIngredient();
+        CreateIngredient create = new CreateIngredient(repository);
+        create.hadler(tomate);
+
+        UpdateIngredient update = new UpdateIngredient(repository);
+        update.handler(queso);
+
+        /*Remove<Pizza,UUID> repository = new RepositoryPizza();        
+        var pizza1 = repository.get(null);
+        
 
         /*
          * Function<Integer,Function<Integer,Integer>> clousure = (a)->{
