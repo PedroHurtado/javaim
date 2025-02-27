@@ -1,5 +1,6 @@
 package com.example;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.UUID;
 import java.util.function.*;
 
 import com.example.common.repository.Remove;
+import com.example.customexceptions.CustomException;
 import com.example.domain.Ingredient;
 import com.example.domain.Pizza;
 import com.example.generic.A;
@@ -23,6 +25,10 @@ import com.example.infraestructura.RepositoryPizza;;
  */
 public class App {
     public static void main(String[] args) {
+
+       CustomException instance = createInstance(CustomException.class); 
+       
+
        Integer z =10;
        Class<?> cl = String.class;             
        printType(String.class);
@@ -143,5 +149,22 @@ public class App {
     }
     static <T> void printType(Class<T> cl){       
         System.out.println(cl.getName());
+    }
+
+    public static <T> T createInstance(Class<T> clazz, Object... args) {
+        try {
+            // Obtener los tipos de los parámetros
+            Class<?>[] paramTypes = new Class<?>[args.length];
+            for (int i = 0; i < args.length; i++) {
+                paramTypes[i] = args[i].getClass();
+            }            
+            // Obtener el constructor adecuado
+            Constructor<T> constructor = clazz.getConstructor(paramTypes);
+            
+            // Crear la instancia
+            return constructor.newInstance(args);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al crear la instancia de " + clazz.getName(), e);
+        }
     }
 }
