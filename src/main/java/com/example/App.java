@@ -49,6 +49,7 @@ public class App {
         a.add(1);
         a.add(2.0);
         a.<Double>add(b);
+        App.<String>printType(String.class);
 
         var tomate = Ingredient.create("Tomate", 1.5);
         var queso = Ingredient.create("Queso", 1.2);
