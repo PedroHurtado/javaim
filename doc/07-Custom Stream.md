@@ -75,6 +75,45 @@ public class Main {
 }
 ```
 
+## 6. Creación de un Stream con un `Custom Iterator`
+Podemos implementar un `Iterator` personalizado y convertirlo en un Stream utilizando `StreamSupport.stream()`.
+
+```java
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+class FibonacciIterator implements Iterator<Integer> {
+    private int previous = 0, current = 1;
+
+    @Override
+    public boolean hasNext() {
+        return true; // Secuencia infinita
+    }
+
+    @Override
+    public Integer next() {
+        int nextValue = previous + current;
+        previous = current;
+        current = nextValue;
+        return previous;
+    }
+}
+
+public class CustomIteratorStream {
+    public static void main(String[] args) {
+        Iterator<Integer> iterator = new FibonacciIterator();
+        Stream<Integer> fibonacciStream = StreamSupport.stream(
+            Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false
+        );
+
+        fibonacciStream.limit(10).forEach(System.out::println);
+    }
+}
+```
+
 ## Conclusión
-Los Streams personalizados permiten manipular datos de manera flexible y eficiente. Dependiendo del caso de uso, `generate()`, `iterate()`, `Spliterator` o `BufferedReader.lines()` pueden ser herramientas clave para construir flujos de datos personalizados.
+Los Streams personalizados permiten manipular datos de manera flexible y eficiente. Dependiendo del caso de uso, `generate()`, `iterate()`, `Spliterator`, `BufferedReader.lines()` o un `Custom Iterator` pueden ser herramientas clave para construir flujos de datos personalizados.
 
