@@ -1,0 +1,175 @@
+pizza={
+    id,
+    name,
+    description,
+    price->sum(ingredients.cost) * 1.2
+    url,
+    ingredients:[
+        {id,name,cost}
+    ]
+}
+
+1. Url
+    pizzas -> todos los recursos debene de estar pluralizados
+    1.1 No debe de expresar acciones 
+        pizzas/add error /pizzas method:'POST'
+    1.2 No debe de expresar formatos /pizzas.json
+        pizzas
+                content-type:application/json|xml
+                accept:apllication/json|xml
+2. Versionado
+    /api/v1/pizzas
+3. Operaciones
+
+3.1 Create
+
+    request
+        path:/pizzas
+        method:POST
+        headers:{
+            content-type:application/json
+            accept:application/xml
+        }
+        body:{...}
+    response
+        headers:{
+            content-type:application/json
+        }
+        body:{id,....}
+    status
+
+    ok                          error
+    201                         400->Bad Request
+                                500->Internal server error(timeout,error)
+                                401->No autenticado
+                                403|404->No tengo permisos
+                                405->Methodo no permitido
+                                415->Formato no permitido
+3.2 Update
+
+    request
+        path:/pizzas/{id}
+        method:PUT|PATCH
+        headers:{
+            content-type:application/json
+            accept:application/xml
+        }
+        body:{...}
+    response
+        headers:{
+            content-type:application/json
+        }
+        body:{id,....}
+
+        empty
+    status
+
+    ok                          error
+    200                         400->Bad Request
+    204                         500->Internal server error(timeout,error)
+                                401->No autenticado
+                                403|404->No tengo permisos
+                                405->Methodo no permitido                                
+                                415->Formato no permitido
+                                404->Not Found
+
+    PUT
+    Modificar una entidad completa
+    PATCH
+    Modificar parte de la entidad
+
+    Idenpotencia (GET,PUT,DELETE)
+    No Idempotentes (POST,PATCH)
+
+    {name:'carbonara',oldName:'CARBONARA'}
+
+3.3 Delete
+
+    request
+        path:/pizzas/{id}
+        method:DELETE
+        
+    response
+        empty
+    status
+
+    ok                          error
+    204                         400->Bad Request
+                                500->Internal server error(timeout,error)
+                                401->No autenticado
+                                403|404->No tengo permisos
+                                405->Methodo no permitido                                
+                                404->Not Found
+3.4 Get 
+
+    request
+        path:/pizzas/{id}
+        method:GET
+        headers:{        
+            accept:application/xml
+        }        
+    response
+        headers:{
+            content-type:application/xml
+        }
+        body:{id,....}
+    status
+
+    ok                          error
+    200                         400->Bad Request
+                                500->Internal server error(timeout,error)
+                                401->No autenticado
+                                403|404->No tengo permisos
+                                405->Methodo no permitido
+                                415->Formato no permitido
+                                404->Not Found
+
+3.1 Get->Collections
+
+    request
+        path:/pizzas
+        method:GET
+        headers:{            
+            accept:application/xml        
+        }        
+    response
+        headers:{
+            content-type:application/json
+        }
+        body:[{id,....}] | []
+    status
+
+    ok                          error
+    200                         400->Bad Request
+                                500->Internal server error(timeout,error)
+                                401->No autenticado
+                                403|404->No tengo permisos
+                                405->Methodo no permitido
+                                415->Formato no permitido
+
+    query->?name=carb&page=1&size=25&fields=id,name,price
+    proyecciones->id,name,price
+
+    https://www.odata.org/
+    https://olingo.apache.org/
+    https://graphql.org/ (No es rest)->GET,POST
+
+    encodeURIComponent(`{
+    project(name: "GraphQL") {
+        tagline
+    }
+    }`)
+
+    si se quiere modificar con graphql utilizamos mutation
+
+    https://grpc.io/
+
+    Nested routes
+
+    1. Add ingredients
+    /pizzas/{id}/ingredients->POST
+    2. Remove ingredients
+    /pizzas/{id}/ingredients/{idIngredient}->DELETE
+
+    slug
+    id-->pizza-carbonara
