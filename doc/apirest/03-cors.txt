@@ -1,0 +1,34 @@
+Cors->Browser
+
+Servidor
+    htpp://localhost:8080->app web
+
+Servidor de api
+    http://localhost:8081
+
+Ajax
+    XmlHttpRequest
+    Fetch
+
+8080->8081
+
+Request
+
+origin:http://localhost:8081
+
+Responder
+
+Access-Control-Allow-Origin: * | http://localhost:8081
+Access-Control-Allow-Credentials:true
+Access-Control-Max-Age:3600
+
+*->Yo no puedo autenticar via cookie
+dominio->Si que puedeo
+
+
+https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request
+
+GET,POST,PUT,DELETE,PATCH,HEAD
+
+OPTIONS
+GET
