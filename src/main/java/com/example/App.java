@@ -32,7 +32,7 @@ public class App {
        Ejercicicios.join();
 
 
-       CustomException instance = createInstance(CustomException.class); 
+       CustomException instance = createInstance(CustomException.class,"Error"); 
        
 
        Integer z =10;
@@ -170,7 +170,7 @@ public class App {
             Class<?>[] paramTypes = new Class<?>[args.length];
             for (int i = 0; i < args.length; i++) {
                 paramTypes[i] = args[i].getClass();
-            }            
+            }                       
             // Obtener el constructor adecuado
             Constructor<T> constructor = clazz.getConstructor(paramTypes);
             

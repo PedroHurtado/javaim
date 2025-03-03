@@ -13,5 +13,6 @@ public class UpdateIngredient {
     public void handler(Ingredient ingredient){
         Ingredient _ingredient = repository.get(ingredient.getId());
         _ingredient.Update(ingredient.getName(), ingredient.getCost());
+        repository.update(_ingredient);
     }
 }

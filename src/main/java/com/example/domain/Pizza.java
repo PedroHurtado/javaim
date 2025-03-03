@@ -25,18 +25,7 @@ public class Pizza extends BaseEntity {
         this.url = url;
         this.ingredients = ingredients;
     }
-    void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);       
-    }
-    void removeIngredient(Ingredient ingredient) {
-        ingredients.remove(ingredient);
-    }
-    void Update(String name, String description, String url) {
-        this.name = name;
-        this.description = description;
-        this.url = url;
-
-    }
+    
     public String getDescription() {
         return description;
     }
@@ -68,6 +57,17 @@ public class Pizza extends BaseEntity {
         return ingredients.stream()
                 .mapToDouble(Ingredient::getCost)   //map                             
                 .sum() * PROFIT;
+    }
+    void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);       
+    }
+    void removeIngredient(Ingredient ingredient) {
+        ingredients.remove(ingredient);
+    }
+    void Update(String name, String description, String url) {
+        this.name = name;
+        this.description = description;
+        this.url = url;      
     }
     public static Pizza create(
             String name,
